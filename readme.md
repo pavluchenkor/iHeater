@@ -45,7 +45,6 @@
 
 1. **Соберите прошивку Klipper для RP2040:**
 
-   ```bash
    cd klipper/
    make menuconfig
 
@@ -81,6 +80,8 @@
         [include iHeater.cfg]
 
 ### 1. Подключение MCU iHeater
+
+[Выполните поиск MCU](#https://www.klipper3d.org/Installation.html#building-and-flashing-the-micro-controller)
 
         [mcu iHeater]
         serial: /dev/serial/by-id/usb-Klipper_rp2040_DE63581213745233-if00
