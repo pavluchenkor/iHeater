@@ -8,14 +8,14 @@ This repository contains configuration files for the iHeater 3D printer camera h
 - [Preparation](#preparation)
 - [Installing firmware on iHeater](#installing-firmware-on-iheater)
 - [Klipper configuration](#configuration-klipper)
-- [Connecting MCU `iHeater`](#1-connecting-mcu-iheater)
-  - [Heater setting `iHeater_H'](#2-heater setting-iheater_h)
-- [Fan setting `iHeater_F`](#3-fan setting-iheater_f)
-- [Temperature sensor setting](#4-temperature sensor setting)
+- [Connecting MCU iHeater](#1-connecting-mcu-iheater)
+  - [Heater setting iHeater_H](#2-heater-setting-iheater_h)
+- [Fan setting iHeater_F](#3-fan-setting-iheater_f)
+- [Temperature sensor setting](#4-temperature-sensor-setting)
 - [G-code macros](#macros-g-code)
 - [Usage](#usage)
-- [Camera heating control commands](#camera heating control commands)
-- [Automation and control logic](#automation and control logic)
+- [Camera heating control commands](#camera-heating-control-commands)
+- [Automation and control logic](#automation-and-control-logic)
 - [Notes](#notes)
 - [License](#license)
 
@@ -45,7 +45,6 @@ This repository contains configuration files for the iHeater 3D printer camera h
 
 1. **Assemble the Klipper firmware for RP2040:**
 
-   ```bash
    cd klipper/
    make menuconfig
 
@@ -62,7 +61,7 @@ This repository contains configuration files for the iHeater 3D printer camera h
 
         make
 
-3. ##Installing the firmware on the iHeter board:##
+3. **Installing the firmware on the iHeter board:**
 
 - Connect the Iheater to the computer in programming mode (by holding the BOOTSEL button when connected).
 
@@ -80,7 +79,9 @@ Copy the iHeaterMCU.cfg and rp2040_pin_aliases.cfg configuration files to the pr
         
         [include iHeater.cfg]
 
-###1. Connecting the iHeater MCU
+### 1. Connecting the iHeater MCU
+
+[Search for the MCU](#https://www.klipper3d.org/Installation.html#building-and-flashing-the-micro-controller )
 
         [mcu iHeater]
         serial: /dev/serial/by-id/usb-Klipper_rp2040_DE63581213745233-if00
@@ -89,12 +90,13 @@ Copy the iHeaterMCU.cfg and rp2040_pin_aliases.cfg configuration files to the pr
 - Connects an additional iHeater microcontroller to the specified serial port.
 
 
-###2. Setting up the iHeater_H heater
+### 2. Setting up the iHeater_H heater
 
     [heater_generic iHeater_H]
     heater_pin: iHeater:H0
     max_power: 1
-    sensor: iHeater_Sens_H
+    sensor_type: NTC 100K MGB18-104F39050L32
+    sensor_pin: iHeater:T0
     control: pid
     pwm_cycle_time: 0.3
     min_temp: 0
@@ -115,7 +117,7 @@ heater_pin: The pin to which the heating element is connected.
     - PID parameters for precise temperature control.
 -verify_heater iHeater_H: Parameters for checking the heater for safety.
 
-###3. Setting up the iHeater_F fan
+### 3. Setting up the iHeater_F fan
 
     [fan_generic iHeater_F1]
     pin: iHeater:FAN0
@@ -133,9 +135,6 @@ heater_pin: The pin to which the heating element is connected.
     sensor_pin: iHeater:T0
     sensor_type: NTC 100K MGB18-104F39050L32
 
-    [temperature_sensor iHeater_Sens_H]
-    sensor_pin: iHeater:T1
-    sensor_type: NTC 100K MGB18-104F39050L32
 
 - Description:
 - iHeater_Sens_C: Camera temperature sensor.
@@ -164,25 +163,42 @@ Heating and fan control macro
 
     [delayed_gcode _iHEATER_CONTROL]
     gcode:
-        {% set current_temp = printer.heater_generic.iHeater_H.temperature %}
-        {% set target_temp = printer.heater_generic.iHeater_H.target %}
-        {% if target_temp > 0 %}
-            # Fan control based on camera temperature
-            {% set chamber_temp = printer.temperature_sensor.iHeater_Sens_C.temperature %}
-            {% if chamber_temp >= 50 %}
-                SET_FAN_SPEED FAN=iHeater_F SPEED=1.0
+        {% set target_heater_temp = printer['gcode_macro HEATER_TARGET'].heater_target %}
+        {% set current_heater_temp = printer['heater_generic iHeater_H']temperature %}
+        {% set chamber_temp = printer['temperature_sensor iHeater_Sens_C']temperature %}
+        {% set delta = printer['gcode_macro DELTA_TEMPERATURE']delta_temp %}
+        {% set target_chamber_temp = target_heater_temp - delta %}
+        {% set fan_speed = printer['gcode_macro FAN_SPEED']fan_speed %}
+        
+        {% if target_heater_temp > 0 %}
+            {% if chamber_temp < target_chamber_temp %}
+                # We maintain the temperature of the heater
+                SET_HEATER_TEMPERATURE HEATER=iHeater_H TARGET={target_heater_temp}
+                # Turn on the fan at the set speed
+                SET_FAN_SPEED FAN=iHeater_F1 SPEED={fan_speed}
             {% else %}
-                SET_FAN_SPEED FAN=iHeater_F SPEED=0.0
+                # Reduce the temperature of the heater
+                {% set reduced_heater_temp = (target_heater_temp - (delta / 4.0)) | round(2) %}
+                SET_HEATER_TEMPERATURE HEATER=iHeater_H TARGET={reduced_heater_temp}
+                # Turn on the fan at maximum speed
+                SET_FAN_SPEED FAN=iHeater_F1 SPEED={fan_speed}
+                # Updating the fan speed variable to the maximum
             {% endif %}
-            # Restart the macro after 1 second
-            UPDATE_DELAYED_GCODE ID=_iHEATER_CONTROL DURATION=1
         {% else %}
-            # Stop the heater and fan
-            SET_HEATER_TEMPERATURE HEATER=iHeater_H TARGET=0
-            SET_FAN_SPEED FAN=IHEATER_FEED=0.0
-RESPONSE prefix="iHeater_control" msg="Camera heating stopped."
+            # HEATER_TARGET == 0, the shutdown process
+            {% if current_heater_temp > 50 %}
+                # Keep the fan turned on until the heater cools down to 50°C
+                SET_FAN_SPEED FAN=iHeater_F1 SPEED=1.0
+                SET_GCODE_VARIABLE VARIABLE=fan_speed VALUE=1.0
+            {% else %}
+                # Turn off the fan and stop the control macro
+                SET_FAN_SPEED FAN=iHeater_F1 SPEED=0.0
+                SET_GCODE_VARIABLE VARIABLE=fan_speed VALUE=0.0
+                CANCEL_DELAYED_GCODE ID=_iHEATER_CONTROL
+                RESPONSE prefix="iHeater_control" msg="Camera heating and fan are disabled."
+            {% endif %}
         {% endif %}
-
+        
 - Description:
 - Monitors the temperature and controls the fan depending on the set logic.
     - The fan turns on when the chamber temperature reaches 50°C.

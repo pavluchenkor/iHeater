@@ -95,7 +95,8 @@
     [heater_generic iHeater_H]
     heater_pin: iHeater:H0
     max_power: 1
-    sensor: iHeater_Sens_H
+    sensor_type: NTC 100K MGB18-104F39050L32
+    sensor_pin: iHeater:T0
     control: pid
     pwm_cycle_time: 0.3
     min_temp: 0
@@ -134,9 +135,6 @@ heater_pin: Пин, к которому подключен нагревател�
     sensor_pin: iHeater:T0
     sensor_type: NTC 100K MGB18-104F39050L32
 
-    [temperature_sensor iHeater_Sens_H]
-    sensor_pin: iHeater:T1
-    sensor_type: NTC 100K MGB18-104F39050L32
 
 - Описание:
     - iHeater_Sens_C: Датчик температуры камеры.
@@ -165,25 +163,42 @@ heater_pin: Пин, к которому подключен нагревател�
 
     [delayed_gcode _iHEATER_CONTROL]
     gcode:
-        {% set current_temp = printer.heater_generic.iHeater_H.temperature %}
-        {% set target_temp = printer.heater_generic.iHeater_H.target %}
-        {% if target_temp > 0 %}
-            # Управление вентилятором на основе температуры камеры
-            {% set chamber_temp = printer.temperature_sensor.iHeater_Sens_C.temperature %}
-            {% if chamber_temp >= 50 %}
-                SET_FAN_SPEED FAN=iHeater_F SPEED=1.0
+        {% set target_heater_temp = printer['gcode_macro HEATER_TARGET'].heater_target %}
+        {% set current_heater_temp = printer['heater_generic iHeater_H']temperature %}
+        {% set chamber_temp = printer['temperature_sensor iHeater_Sens_C']temperature %}
+        {% set delta = printer['gcode_macro DELTA_TEMPERATURE']delta_temp %}
+        {% set target_chamber_temp = target_heater_temp - delta %}
+        {% set fan_speed = printer['gcode_macro FAN_SPEED']fan_speed %}
+        
+        {% if target_heater_temp > 0 %}
+            {% if chamber_temp < target_chamber_temp %}
+                # Поддерживаем температуру нагревателя
+                SET_HEATER_TEMPERATURE HEATER=iHeater_H TARGET={target_heater_temp}
+                # Включаем вентилятор на заданную скорость
+                SET_FAN_SPEED FAN=iHeater_F1 SPEED={fan_speed}
             {% else %}
-                SET_FAN_SPEED FAN=iHeater_F SPEED=0.0
+                # Уменьшаем температуру нагревателя
+                {% set reduced_heater_temp = (target_heater_temp - (delta / 4.0)) | round(2) %}
+                SET_HEATER_TEMPERATURE HEATER=iHeater_H TARGET={reduced_heater_temp}
+                # Включаем вентилятор на максимальную скорость
+                SET_FAN_SPEED FAN=iHeater_F1 SPEED={fan_speed}
+                # Обновляем переменную скорости вентилятора до максимальной
             {% endif %}
-            # Перезапуск макроса через 1 секунду
-            UPDATE_DELAYED_GCODE ID=_iHEATER_CONTROL DURATION=1
         {% else %}
-            # Остановка нагревателя и вентилятора
-            SET_HEATER_TEMPERATURE HEATER=iHeater_H TARGET=0
-            SET_FAN_SPEED FAN=iHeater_F SPEED=0.0
-            RESPOND prefix="iHeater_control" msg="Нагрев камеры остановлен."
+            # HEATER_TARGET == 0, процесс отключения
+            {% if current_heater_temp > 50 %}
+                # Поддерживаем вентилятор включенным пока нагреватель не остынет до 50°C
+                SET_FAN_SPEED FAN=iHeater_F1 SPEED=1.0
+                SET_GCODE_VARIABLE VARIABLE=fan_speed VALUE=1.0
+            {% else %}
+                # Отключаем вентилятор и останавливаем контролирующий макрос
+                SET_FAN_SPEED FAN=iHeater_F1 SPEED=0.0
+                SET_GCODE_VARIABLE VARIABLE=fan_speed VALUE=0.0
+                CANCEL_DELAYED_GCODE ID=_iHEATER_CONTROL
+                RESPOND prefix="iHeater_control" msg="Нагрев камеры и вентилятор отключены."
+            {% endif %}
         {% endif %}
-
+        
 - Описание:
     - Отслеживает температуру и управляет вентилятором в зависимости от заданной логики.
     - Вентилятор включается при достижении температуры камеры 50°C.
