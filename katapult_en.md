@@ -37,7 +37,7 @@ make menuconfig
 - [X] Enable Status LED  
 - (PA5)   Status LED GPIO Pin
 
-![menuconfig](img/katapult_menuconfig.jpg)
+![menuconfig](imgweb/katapult_menuconfig.jpg)
 
 3. Build:
 

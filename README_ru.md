@@ -4,13 +4,13 @@ iHeater — это компактное и доступное решение д�
 
 Может работать самостоятельно с собственной прошивкой как отдельное устройство или под управлением Klipper с подключением к принтеру по USB
 
-![iHeater](img/iHeater.png)
+![iHeater](imgweb/iHeater_promo.png)
 ## Варианты использования
 ### Под управлением Klipper
 
 Плата работает как отдельный MCU в Klipper, полностью автономно управляя нагревом камеры и вентилятором. Благодаря питанию от 220 В, iHeater не нагружает блок питания принтера, что особенно важно, учитывая, что штатные БП часто работают на пределе.
 
-![PCB](img/PCB_r2.png)
+![PCB](imgweb/PCB_r2.png)
 
 Стоимость платы сопоставима или даже ниже, чем самостоятельная сборка аналогичного решения на базе обычного микроконтроллера, твердотельного реле и других необходимых комплектующих. Тем не менее, для энтузиастов остаётся возможность собрать аналог самостоятельно.
 
@@ -34,25 +34,8 @@ iHeater — это простой способ добавить нагрев к�
 7	|1	|1	|1	|75 °C	|0b111	|7
 
 
-## Установка
-### Конфигурация iHeater для Klipper
 
-Данный раздел содержит конфигурационные файлы для нагревателя камеры 3D-принтера iHeater на основе прошивки Klipper и одноименной платы управления. Конфигурация предназначена для управления нагревом камеры и вентиляторами с помощью микроконтроллера iHeater.
-
-### Требования
-
-#### Аппаратное обеспечение
-  - Плата управления iHeater
-  - Терморезисторы NTC 100K 3950 (2 шт.)
-  - PTC нагревательный элемент 220В 100Вт, для камеры
-  - Вентилятор 7530 220В, для циркуляции воздуха в камере
-  - Термофьюз KSD9700 или аналогичный (220В 5А 130С)
-
-#### Программное обеспечение
-  - Klipper (последняя версия)
-  - Настроенный и работающий хост с Klipper
-
-### Подготовка
+<!-- ### Подготовка
 
 #### Сборка аппаратной части
    - Подключите нагревательный элемент и вентилятор к iHeater.
@@ -66,7 +49,7 @@ iHeater — это простой способ добавить нагрев к�
 
 ### Установка Katapult Bootloader
 
-Этот документ содержит инструкции по сборке и прошивке загрузчика **Katapult** от Klipper для микроконтроллера **STM32F042F6P6**. Загрузчик Katapult позволяет прошивать прошивку Klipper по USB без ST-Link.
+Этот документ содержит инструкции по сборке и прошивке загрузчика **Katapult** от Klipper для микроконтроллера **STM32F042F6P6**. Загрузчик Katapult позволяет прошивать прошивку Klipper по USB без ST-Link и перевода в DFU с использованием джампера.
 
 ---
 
@@ -103,7 +86,7 @@ make menuconfig
 - (PA5)   Status LED GPIO Pin
 
 
-![menuconfig](img/katapult_menuconfig.jpg)
+![menuconfig](imgweb/katapult_menuconfig.jpg)
 
 3. Сборка:
 
@@ -162,11 +145,9 @@ make
 sudo chmod 777 /dev/serial/by-id/usb-katapult_stm32f042x6_XXXXXXXXXXXXXX-if00
 ``` 
 
-[Установи прошивку Klipper]('/iHeater/README_ru.md#iheater_1')
-
 #### Прошивка Katapult через ST-Link
 
-> Этот шаг нужен только один раз, для загрузки самого Katapult.
+> Этот шаг нужен только один раз, для загрузки самого Katapult в случае если режим DFU недоступен.
 
 ##### Подключение ST-Link:
 
@@ -198,194 +179,17 @@ Flash written and verified! jolly good!
 #### Примечания
 
 - Katapult занимает первые 8 КБ Flash, поэтому **в Klipper обязательно указывать смещение 8 KiB**.
-- Можно использовать либо двойной Reset, либо кнопку на GPIO (PA4) для входа в DFU.
-- Если PA13/PA14 используются для SWD
+- Можно использовать либо двойной Reset, либо кнопку на GPIO (PA4) для входа в загррузки прошивки.
 - После прошивки Katapult можно больше не использовать ST-Link — вся дальнейшая работа по USB.
+ -->
 
 
 
 
-## Установка прошивки на iHeater
+<!-- ## CAD файлы iHeater
 
-### Соберите прошивку Klipper для stm32f042
-
-   cd klipper/
-   make menuconfig
-
-#### В меню конфигурации выберите
-
-    Enable extra low-level configuration options
-    
-    Micro-controller Architecture (STMicroelectronics STM32)
-
-    Processor model (STM32F042)
-
-    Bootloader offset (8KiB bootloader)
-
-    Clock Reference (Internal clock)
-
-    Communication interface (USB (on PA9/PA10))
-
-#### Выключите все лишнее
-
-        [*] Support micro-controller based ADC (analog to digital)
-        [ ] Support communicating with external chips via SPI bus
-        [ ] Support communicating with external chips via I2C bus
-        [*] Support GPIO based button reading
-        [ ] Support Trinamic stepper motor driver UART communication
-        [ ] Support 'neopixel' type LED control
-        [ ] Support measuring fan tachometer GPIO pins
-            *** LCD chips ***
-        [ ] Support ST7920 LCD display
-        [ ] Support HD44780 LCD display
-            *** External ADC type chips ***
-        [ ] Support HX711 and HX717 ADC chips
-
-
-#### Сохраните и выйдите из меню.
-
-#### Скомпилируйте прошивку
-
-        make clean
-        make
-
-    !!! Результат должен выглядеть так:
-
-        Creating hex file out/klipper.bin
-
-### Установка прошивки на плату iHeater
-
-    При необходимости установите python3-serial
-        
-        sudo apt install python3-serial
-
-**Далее рассматривается вариант установки с установленным бутлоадером Katapult**
-
-- Подключите iHeater к хосту в режиме программирования (удерживая кнопку Mode при подключении или дважды нажав RESET).
-
-- Выполните поиск 
-
-        ls /dev/serial/by-id/
-
-    !!! Результат должен выглядеть так:
-
-        usb-katapult_stm32f042x6_0C0018000D53304347373020-if00
-
-    - При необходимости установите flashtool
-
-    ```
-    pip install flashtool
-    ```
-
-- Измените на ID свой и введите:
-    
-        python3 ~/katapult/scripts/flashtool.py -d /dev/serial/by-id/usb-katapult_stm32f042x6_0C0018000D53304347373020-if00 -f ~/klipper/out/klipper.bin
-
-    !!! Результат должен выглядеть так:
-
-        Flashing '/home/pi/klipper/out/klipper.bin'...
-
-        [##################################################]
-        
-        Write complete: 20 pages
-        
-        Verifying (block count = 319)...
-        
-        [##################################################]
-        
-        Verification Complete: SHA = 8A3DDF39A0E70B684DC6BAF74EF8F089EBDD6C18
-        
-        Flash Success
-
-- Проверьте: 
-        
-            ls /dev/serial/by-id/
-
-    !!! Результат должен выглядеть так:
-
-        usb-Klipper_stm32f042x6_0C0018000D53304347373020-if00
-
-    ```iHeater готов для работы с Klipper```
-
----
-
-
-
-## Конфигурация Klipper
-
-Скопируйте конфигурационные файлы iHeater.cfg в папку с файлом printer.cfg и подключите его в printer.cfg с помощью директивы [include]
-
-
-```
-cd ~/klipper_config
-```
-
-```
-wget https://github.com/pavluchenkor/iHeater/blob/main/iHeater.cfg
-```
-
-Откройте printer.cfg и добавьте
-
-    [include iHeater.cfg]
-
-## Подключение MCU iHeater
-
-Измените файл iHeater.cfg, укажите полученный ID
-
-```
-    [mcu iHeater]
-    serial: usb-Klipper_stm32f042x6_0C0018000D53304347373020-if000
-```
-
-
-## Использование
-
-## Команды управления нагревом камеры
-- Установка температуры камеры:
- 
-
-        M141 S60  ; Устанавливает температуру камеры на 60°C
-
-- Ожидание достижения температуры:
-
-        M191 S60  ; Ждет, пока температура камеры достигнет 60°C
-
-- Остановка нагрева камеры:
-
-        M141 S0   ; Отключает нагрев камеры
-
-- В завершении G-кода слайсера добавьте `M141 S0`, чтобы корректно отключить нагрев камеры.
-
-## Конфигурация GPIO
-
-| Pin    | Alias       | Function                          |
-|--------|-------------|-----------------------------------|
-| PA0    | TH1         | Температурный датчик камеры       |
-| PA1    | HEATER      | Управление нагревателем           |
-| PA2    | FAN         | Управление вентилятором           |
-| PA3    | TH0         | Температурный датчик нагревателя  |
-| PA4    | MODE        | Кнопка режима                     |
-| PA5    | LED3        | Светодиод 3                       |
-| PA6    | LED2        | Светодиод 2                       |
-| PA7    | LED1        | Светодиод 1                       |
-
-
-## Примечания
-- Безопасность:
-
-    - Убедитесь, что все подключения выполнены правильно и безопасно.
-    - Проверьте, что значения min_temp и max_temp соответствуют спецификациям оборудования.
-
-- Проверка оборудования:
-    - Перед использованием протестируйте работу нагревателя и вентилятора.
-    - Следите за температурой во время первых запусков.
-- Настройка PID:
-    - При необходимости выполните калибровку PID для точного контроля температуры.
-
-## CAD файлы iHeater
-
-В этой директории находятся 3D-модели компонентов корпуса и креплений устройства iHeater.
-
+В этой директории находятся 3D-модели компонентов корпуса и креплений устройства iHeater. -->
+<!-- 
 ### Список файлов
 
 | Файл | Описание |
@@ -413,33 +217,33 @@ wget https://github.com/pavluchenkor/iHeater/blob/main/iHeater.cfg
 
 ---
 
-[_Если вы редактируете CAD-файлы — не забудьте обновить и этот документ!_](User%20mods/README.md)
-
+[_Если вы редактируете CAD-файлы — не забудьте обновить и этот документ!_](User%20mods/README.md) -->
+<!-- 
 ## Сборка
 
 ### Установка платы
-![Сборка iHeater](img/iHeater_5484.jpg)
+![Сборка iHeater](imgweb/iHeater_5484.jpg)
 
 ### Установка Термистора и KSD
-![Сборка iHeater](img/iHeater_5489.jpg)
+![Сборка iHeater](imgweb/iHeater_5489.jpg)
 
 ### Установка нагревателя
-![Сборка iHeater](img/iHeater_5491.jpg)
+![Сборка iHeater](imgweb/iHeater_5491.jpg)
 
 ### Проводка
-![Сборка iHeater](img/iHeater_5494.jpg)
+![Сборка iHeater](imgweb/iHeater_5494.jpg)
 
 ### Установка НШВИ
-![Сборка iHeater](img/iHeater_5496.jpg)
+![Сборка iHeater](imgweb/iHeater_5496.jpg)
 
 ### Коммутация
-![Сборка iHeater](img/iHeater_5498.jpg)
+![Сборка iHeater](imgweb/iHeater_5498.jpg)
 
 ### Финальная сборка
-![Сборка iHeater](img/iHeater_5500.jpg)
+![Сборка iHeater](imgweb/iHeater_5500.jpg)
 
 ### Готовое изделие
-![Сборка iHeater](img/iHeater_5506.jpg)
+![Сборка iHeater](imgweb/iHeater_5506.jpg) -->
 
 
 ## Лицензия

@@ -5,7 +5,7 @@ iHeater is a compact and affordable solution for 3D printers without an active h
 
 It can operate independently with its own firmware as a standalone device or under Klipper control, connected to the printer via USB.
 
-![iHeater](img/iHeater.png)
+![iHeater](imgweb/iHeater.png)
 
 **Under Klipper Control**
 
@@ -15,7 +15,7 @@ The cost of the board is comparable to or even lower than building a similar sol
 
 iHeater is a simple way to add chamber heating to your printer to improve print quality and expand the range of materials used.
 
-![PCB](img/PCB_r2.png)
+![PCB](imgweb/PCB_r2.png)
 
 **With iHeater Firmware**
 
