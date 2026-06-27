@@ -1,0 +1,12 @@
+title: iHeater
+nav:
+  - O projektu: README.md
+  - Bezpečnost: safety.md
+  - CAD: cad.md
+  - Montáž: assembly.md
+  - Připojení: connection.md
+  - Klipper: klipper
+  - Slicer: slicer.md
+  - Použití: usage.md
+  - Licence: license.md
+  - Uživatelské úpravy: user-mods

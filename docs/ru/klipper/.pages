@@ -1,0 +1,6 @@
+title: Klipper
+nav:
+  - Прошивка: flashing.md
+  - Конфигурация: configuration.md
+  - Creality: creality.md
+  - Устранение неисправностей: troubleshooting.md

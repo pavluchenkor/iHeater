@@ -1,0 +1,6 @@
+title: Klipper
+nav:
+  - Micrologiciel: flashing.md
+  - Configuration: configuration.md
+  - Creality: creality.md
+  - Dépannage: troubleshooting.md

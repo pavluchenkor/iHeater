@@ -1,0 +1,12 @@
+title: iHeater
+nav:
+  - 关于项目: README.md
+  - 安全: safety.md
+  - CAD: cad.md
+  - 组装: assembly.md
+  - 连接: connection.md
+  - Klipper: klipper
+  - 切片软件: slicer.md
+  - 使用: usage.md
+  - 许可证: license.md
+  - 用户改装: user-mods

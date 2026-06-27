@@ -1,0 +1,6 @@
+title: Klipper
+nav:
+  - Firmware: flashing.md
+  - Configuration: configuration.md
+  - Creality: creality.md
+  - Troubleshooting: troubleshooting.md

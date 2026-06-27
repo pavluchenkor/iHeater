@@ -1,0 +1,14 @@
+title: iHeater
+nav:
+  - About the project: README.md
+  - Safety: safety.md
+  - CAD: cad.md
+  - Assembly: assembly.md
+  - Connection: connection.md
+  - Klipper: klipper
+  - Slicer: slicer.md
+  - Usage: usage.md
+  - License: license.md
+  - Katapult: katapult.md
+  - User mods: user-mods
+  - Changelog: changelog

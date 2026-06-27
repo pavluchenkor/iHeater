@@ -1,0 +1,6 @@
+title: Klipper
+nav:
+  - 韌體: flashing.md
+  - 設定: configuration.md
+  - Creality: creality.md
+  - 疑難排解: troubleshooting.md

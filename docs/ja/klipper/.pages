@@ -1,0 +1,6 @@
+title: Klipper
+nav:
+  - ファームウェア: flashing.md
+  - 設定: configuration.md
+  - Creality: creality.md
+  - トラブルシューティング: troubleshooting.md
