@@ -1,9 +1,28 @@
-<!-- i18n-placeholder: true -->
+本许可证不会覆盖其他许可证，但对其进行补充。
 
-# Translation wanted
+### 项目材料使用许可证
+私人使用
+本项目的所有材料免费提供给个人使用。您可以根据自己的需要复制、使用和学习这些材料，不受任何限制。
 
-This page is not available in this language yet.
+### 修改和分发
+您可以修改项目的材料。但是，在分发修改版本时，您需要：
 
-You can help the iDryer project by translating this article. Please use the English or Russian version as the source, check the meaning carefully, and submit your translation as a pull request to the documentation repository.
+### 署名原始作者。
+在同一许可证下发布您的修改源代码。
+修改版本附带本许可证的文本。
 
-Thank you for helping make the documentation available to more makers.
+### 商业使用
+要用于商业目的使用项目的材料，您必须首先联系作者并获得其许可。联系信息在项目文件或官方来源中提供。
+
+### 免责声明
+项目材料按"现状"提供。作者对使用这些材料造成的任何直接或间接损害概不负责。
+
+### 许可证接受
+通过使用项目材料，您确认同意本许可证的条款。
+
+知识共享署名-非商业性使用-相同方式共享3.0许可证
+
+署名-非商业性使用-相同方式共享3.0未移植版 (CC BY-NC-SA 3.0)
+
+### 联系我
+https://t.me/pavluchenkor

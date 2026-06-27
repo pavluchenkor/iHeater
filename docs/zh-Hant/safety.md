@@ -1,9 +1,35 @@
-<!-- i18n-placeholder: true -->
+# 安全性
 
-# Translation wanted
+!!! danger "交流電壓操作"
+    裝置包含 110–230 V 電壓下的電氣元件。在進行任何電氣工作之前，請切斷電源。在首次啟動前，請確保所有連接都有可靠的絕緣。
 
-This page is not available in this language yet.
+控制器韌體（Klipper 或 Standalone）提供軟體保護：
 
-You can help the iDryer project by translating this article. Please use the English or Russian version as the source, check the meaning carefully, and submit your translation as a pull request to the documentation repository.
+- 使用熱敏電阻進行溫度控制；
+- 檢查溫度感測器連接狀態；
+- 防止溫度超出安全範圍；
+- 使用計時器防止系統當機；
+- 在感測器或控制器故障時自動關閉。
 
-Thank you for helping make the documentation available to more makers.
+另外還實施了硬體保護：
+
+安裝了 Thermal Protector KSD9700（135 °C），在過熱情況下可自動切斷加熱元件的電源。當溫度降至閾值以下時，裝置會自動閉合電路，恢復供電。
+
+控制器配有 2 A 保險絲，在緊急情況下熔斷，完全切斷系統電源。
+
+採用具有完整電氣隔離的 PTC 加熱元件。與大多數加熱解決方案不同，PTC 加熱器外殼不帶電，這排除了在安裝和維護 3D 印表機室時觸電的風險。
+
+這種多層次的保護系統使 iHeater 成為 3D 印表機室主動加熱的安全解決方案，包括長時間連續運行。
+
+!!! warning "溫度計安裝"
+    確保溫度計底部的裸露導線部分不接觸加熱器的金屬外殼。必要時，用絕緣膠帶或將其放入鐵氟龍管/熱縮管中進行絕緣。
+
+    加熱器溫度可達 140 °C。
+
+!!! danger "KSD9700 — 非最終保護"
+    KSD9700（Thermal Protector）是一個自復位裝置：在過熱時斷開電路，但一旦溫度降至閾值以下，就會自動閉合。如果加熱器出現故障，裝置將無限循環過熱和冷卻，無需任何干預。這不是緊急斷電 — 這是無限的過熱循環。
+
+    為了長期使用，將 KSD9700 替換為一次性 Thermal Fuse（例如 **RH130**）。它在觸發時永久斷開電路 — 裝置失電並保持安全狀態，直到更換。
+
+!!! note "建議順序"
+    在組裝和調試階段使用 KSD9700。驗證工作正常後，將其更換為 Thermal Fuse。

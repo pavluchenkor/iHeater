@@ -1,9 +1,70 @@
-<!-- i18n-placeholder: true -->
+# 組裝
 
-# Translation wanted
+閱讀文檔、下載並打印必要的零件。在開始組裝之前，確保具有所有組件和工具。
 
-This page is not available in this language yet.
+!!! danger "使用交流電源"
+    所有涉及 110–230 V 電源連接的工作都應在設備斷電時進行。詳見[安全](safety.md)部分。
 
-You can help the iDryer project by translating this article. Please use the English or Russian version as the source, check the meaning carefully, and submit your translation as a pull request to the documentation repository.
+## 組裝前
 
-Thank you for helping make the documentation available to more makers.
+建議首先在**工作臺上**組裝整個系統，不安裝在機殼中，並進行測試：
+
+- 連接**所有**組件。
+- 檢查加熱器、風扇、溫度傳感器的正常運行。
+- 將系統連接到**Klipper**或刷入獨立固件，並確保正常工作。
+
+視頻指南：[YouTube](https://youtu.be/1QMtVY0Vx-8?si=Ol1u4Ux9wALDcfe2)
+
+## 逐步組裝
+
+### 安裝主板
+
+![iHeater 組裝](../img/iHeater_5484.jpg)
+
+### 安裝熱敏電阻和熱保護器
+
+!!! warning "安裝熱敏電阻"
+    確保熱敏電阻根部的裸露導線不與加熱器的金屬外殼接觸。必要時，用卡普頓膠帶隔離這些部分，或將其放入鐵氟龍管/熱縮管。
+
+    加熱器溫度可達 140 °C。
+
+!!! warning "安裝熱保護器"
+    可以安裝 KSD9700（熱保護器，自恢復式）或一次性熱熔斷絲。
+
+    KSD9700 在過熱時斷開電路，冷卻時自動閉合。熱熔斷絲（例如 **RH130**）在觸發時永久切斷電路——在故障情況下提供更可靠的保護。
+
+    在調試階段使用 KSD9700，然後替換為熱熔斷絲以供正常運行。
+
+![iHeater 組裝](../img/iHeater_5489.jpg)
+![iHeater 組裝](../img/thermistor.jpg)
+
+### 安裝加熱器
+
+!!! warning "安裝熱敏電阻"
+    將熱敏電阻安裝在加熱器邊緣，大約在散熱片邊緣高度的中點。
+
+    熱敏電阻根部的裸露導線不應與加熱器的金屬外殼接觸。必要時，用卡普頓膠帶隔離這些部分，或將其放入鐵氟龍管/熱縮管。
+
+    加熱器溫度可達 140 °C。
+
+![iHeater 組裝](../img/iHeater_5491.jpg)
+
+### 佈線
+
+![iHeater 組裝](../img/iHeater_5494.jpg)
+
+### 安裝 НШВИ
+
+![iHeater 組裝](../img/iHeater_5496.jpg)
+
+### 接線
+
+![iHeater 組裝](../img/iHeater_5498.jpg)
+
+### 最終組裝
+
+![iHeater 組裝](../img/iHeater_5500.jpg)
+
+### 成品
+
+![iHeater 組裝](../img/iHeater_5506.jpg)

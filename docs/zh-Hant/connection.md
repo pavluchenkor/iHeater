@@ -1,9 +1,61 @@
-<!-- i18n-placeholder: true -->
+## 接線圖
 
-# Translation wanted
+**iHeater** 控制器既可以作為 **Klipper** 系統的一部分（作為附加 MCU）運行，也可以獨立運行——在內置 **standalone** 韌體的控制下。
 
-This page is not available in this language yet.
+### 與 Klipper 連接
 
-You can help the iDryer project by translating this article. Please use the English or Russian version as the source, check the meaning carefully, and submit your translation as a pull request to the documentation repository.
+為了在 Klipper 中正確工作，需要連接：
 
-Thank you for helping make the documentation available to more makers.
+* **USB 電纜**連接到主機（Host-MCU）——用於數據傳輸和 5V 電源供應；
+* **220V / 110V 電源**——取決於設備版本和加熱器類型；
+* **加熱器熱敏電阻**——用於監控加熱元件的溫度；
+* **腔室熱敏電阻**——用於監控 3D 打印機腔室內的空氣溫度；
+* **觸發端口**——可選連接，用於外部信號的自動控制。
+
+正常工作時，iHeater 應放在 3D 打印機腔室內。
+
+!!! note annotate "建議將腔室熱敏電阻放在打印頭水平高度，盡可能放在**打印床上方**。"
+
+![接線圖](../img/iHeater_pinout.png)
+
+## GPIO 配置
+
+| Pin    | Alias       | 功能                          |
+|--------|-------------|-----------------------------------|
+| PA0    | TH1         | 腔室溫度傳感器                 |
+| PA1    | HEATER      | 加熱器控制                     |
+| PA2    | FAN         | 風扇控制                       |
+| PA3    | TH0         | 加熱器溫度傳感器               |
+| PA4    | MODE        | 模式按鈕                       |
+| PA5    | LED3        | LED 3                          |
+| PA6    | LED2        | LED 2                          |
+| PA7    | LED1        | LED 1                          |
+| PB1    | TH2         | 附加溫度傳感器                 |
+
+---
+
+### 獨立模式使用
+
+在獨立模式中，還可以使用額外的功能和連接方式：
+
+* **作為熱敏電阻的觸發端口**
+  將熱敏電阻連接到觸發端口，並將其放在打印床加熱元件附近時，可以啟用自動控制：
+  - 當打印床加熱超過 **45°C** 時——啟動腔室加熱；
+  - 當溫度降至 **85°C** 以下時——關閉加熱。
+
+* **來自外部 5V 電源供電**
+  如果無法使用 USB 供電，可以直接通過相應的接頭供電。
+
+* **實驗性選項**
+  連接 [5V 電源直接到主板](https://sl.aliexpress.ru/p?key=OHtN3Xm)。
+
+!!! danger "不要同時使用 USB 和外部電源"
+    同時連接兩個電源是不允許的。這將導致電源衝突、設備工作錯誤，並可能損壞設備。
+
+![電源連接](../img/IMG_6009.jpg)
+
+---
+
+### 整體接線圖
+
+![接線圖](../img/iHeater_connection.png)

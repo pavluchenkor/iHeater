@@ -1,9 +1,28 @@
-<!-- i18n-placeholder: true -->
+此許可證不會覆蓋其他許可證，但作為補充。
 
-# Translation wanted
+### 使用項目材料的許可證
+個人使用
+本項目的所有材料免費提供供個人使用。您可以自由複製、使用和研究這些材料，滿足您自己的需求，不受任何限制。
 
-This page is not available in this language yet.
+### 修改和分發
+您可以修改項目的材料。但是，在分發修改後的版本時，您必須：
 
-You can help the iDryer project by translating this article. Please use the English or Russian version as the source, check the meaning carefully, and submit your translation as a pull request to the documentation repository.
+### 署名原始作者。
+在相同許可證下發佈您修改的源代碼。
+附帶此許可證的文本與修改後的版本。
 
-Thank you for helping make the documentation available to more makers.
+### 商業使用
+要將項目材料用於商業目的，您必須先聯繫作者並獲得其許可。聯繫信息位於項目文件或官方來源中。
+
+### 免責聲明
+項目材料按"原樣"提供。作者不對因使用而產生的任何直接或間接損害負責。
+
+### 許可證的接受
+通過使用項目材料，您確認您同意本許可證的條款。
+
+知識共享署名-非商業性-相同方式共享 3.0 許可證
+
+署名-非商業性-相同方式共享 3.0 未移植版本 (CC BY-NC-SA 3.0)
+
+### 聯繫我
+https://t.me/pavluchenkor

@@ -1,9 +1,35 @@
-<!-- i18n-placeholder: true -->
+# 關於 iHeater 項目
 
-# Translation wanted
+iHeater 是一個緊湊型加熱器，用於在 3D 打印機中創建主動熱腔。特別是在具有封閉或專有電子設備的型號中受到歡迎 — Creality、Bambu Lab、FlashForge — 這些型號沒有用於連接加熱器、風扇和溫度傳感器的空閒連接器。
 
-This page is not available in this language yet.
+通過 USB 連接，獨立於主板的限制工作。根據固件的不同 — 與 Klipper 完全集成或自主運行。
 
-You can help the iDryer project by translating this article. Please use the English or Russian version as the source, check the meaning carefully, and submit your translation as a pull request to the documentation repository.
+結合床加熱，iHeater 提供均勻的腔室預熱 — 這是在打印 ABS、PA、PC 和其他工程塑料時的關鍵因素。該設備根據空氣溫度動態管理加熱，在腔室內創建穩定的條件，無過熱和溫度波動。
 
-Thank you for helping make the documentation available to more makers.
+提供兩個版本：
+
+- 100 W — 用於小型打印機（存檔）
+- 200 W — 用於較大型打印機
+
+![iHeater](../img/iHeater_promo.png)
+
+## 使用選項
+
+### 由 Klipper 控制
+
+該板在 Klipper 中作為獨立 MCU 工作，完全自主地管理腔室加熱和風扇。220 V 電源不會給打印機的電源造成負擔 — 標準電源經常在極限下工作。
+
+![PCB](../img/iHeater_200_PCB.png)
+
+該板的成本與使用微控制器、固態繼電器和必要組件的獨立組裝類似解決方案相當或更低。對於愛好者，仍然有可能獨立構建類似設備。
+
+### 使用 iHeater 固件
+
+iHeater 板是自給自足的，包含作為獨立設備使用所需的所有必要外設。目標溫度通過順序按下 MODE 按鈕設置，並由三個 LED 顯示。
+
+## 許可證
+
+該項目以 MIT 許可證分發。詳情見 [LICENSE](license.md) 文件。
+
+!!! danger "使用加熱元件"
+    使用加熱元件和溫度控制與火災和設備損害的風險相關聯。遵守安全預防措施。更多信息見 [安全](safety.md) 部分。

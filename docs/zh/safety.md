@@ -1,9 +1,35 @@
-<!-- i18n-placeholder: true -->
+# 安全性
 
-# Translation wanted
+!!! danger "使用交流电源时的安全"
+    设备含有110–230 V的带电组件。进行任何电气工作之前，请断开电源。在首次启动前，请确保所有连接接头的绝缘良好。
 
-This page is not available in this language yet.
+控制器固件——Klipper或Standalone——实现了软件保护：
 
-You can help the iDryer project by translating this article. Please use the English or Russian version as the source, check the meaning carefully, and submit your translation as a pull request to the documentation repository.
+- 利用热敏电阻进行温度监控；
+- 检查温度传感器连接状态；
+- 防止温度超出安全范围；
+- 使用定时器防止系统卡顿；
+- 传感器或控制器出错时自动断电。
 
-Thank you for helping make the documentation available to more makers.
+另外还实现了硬件保护：
+
+安装了 Thermal Protector KSD9700（135 °C），在发生过热时，它会物理上切断加热元件的电源。当温度降低到阈值以下时，设备会自动闭合电路，恢复电源。
+
+控制器配备了2 A保险丝，在紧急情况下熔断，完全切断系统电源。
+
+采用具有完全电气隔离的PTC加热元件。与大多数加热解决方案不同，PTC加热器外壳不带电，这排除了在3D打印机腔室安装和维护时触电的风险。
+
+这种多层次的保护系统使iHeater成为用于3D打印机腔室主动加热的安全解决方案，包括长时间连续工作时。
+
+!!! warning "热敏电阻安装"
+    请确保热敏电阻根部的裸露电线不与加热器金属外壳接触。如有必要，请用高温胶带或特氟龙管/热缩管隔离这些部分。
+
+    加热器温度可能达到140 °C。
+
+!!! danger "KSD9700——不是最终保护"
+    KSD9700（Thermal Protector）是自复位装置：过热时断开电路，但温度降低到阈值以下时——会自动闭合。如果加热器故障，设备会在没有任何干预的情况下反复过热和冷却。这不是紧急断电——这是无限的过热循环。
+
+    为了长期运行，请将KSD9700更换为一次性Thermal Fuse（例如**RH130**）。它在触发时永久断开电路——设备断电并保持安全状态，直到更换。
+
+!!! note "推荐程序"
+    在组装和调试阶段使用KSD9700。验证工作正常后，将其更换为Thermal Fuse。

@@ -1,9 +1,97 @@
-<!-- i18n-placeholder: true -->
+# iHeater 通信问题及解决方案
 
-# Translation wanted
+使用 **iHeater** 时，某些情况下可能出现连接稳定性问题（中断、"丢失"MCU、工作不稳定）。  
+在大多数情况下，这不是设备本身的问题，而是由外部因素引起的：振动、电磁干扰或负载特性。
 
-This page is not available in this language yet.
+以下是主要原因及解决方法。
 
-You can help the iDryer project by translating this article. Please use the English or Russian version as the source, check the meaning carefully, and submit your translation as a pull request to the documentation repository.
+---
 
-Thank you for helping make the documentation available to more makers.
+## 1. USB 电缆振动
+
+!!! warning "症状"
+    - 周期性连接中断  
+    - 设备"消失"于系统  
+    - 触碰电缆时连接恢复  
+
+!!! info "原因"
+    打印机的振动可能导致 USB 接头微小位移，引起短暂接触丧失。
+
+!!! success "解决方案"
+    - 牢固固定 USB 电缆在接头中  
+    - 消除电缆张力  
+    - 如有必要：
+        - 使用连接器更紧密的电缆  
+        - 用热熔胶/扎带/固定器固定电缆  
+
+---
+
+## 2. 电源线干扰
+
+!!! warning "症状"
+    - 启动加热或风扇时连接丧失  
+    - 设备随机重启  
+    - 无明显原因的不稳定工作  
+
+!!! info "原因"
+    交流电源线产生的电磁干扰可能会耦合到 USB 电缆。
+
+ ![ferrite bead](../../img/ferrite_bead.png)
+
+!!! success "解决方案"
+    - 将 USB 电缆和电源线分开尽可能远  
+    - 不要在同一根线槽中布线  
+    - 避免长段平行布线  
+    - 在 USB 电缆上安装铁氧体滤波器（铁氧体圆筒），靠近控制器和/或打印机板
+
+---
+
+## 3. 风扇干扰
+
+!!! warning "症状"
+    - 启动/关闭风扇时连接丧失  
+    - 故障与冷却风扇工作相吻合  
+    - PWM 控制时不稳定  
+
+!!! info "原因"
+    110-220V 风扇配备开关电源，可产生类似任何开关电源的干扰。
+    这些干扰可能影响信号线。
+
+![ferrite bead](../../img/snubber1.png)
+![ferrite bead](../../img/snubber2.png)
+
+!!! success "解决方案"
+    建议在风扇并联安装 **RC-抑制器（snubber）**。或使用铁氧体滤波器
+
+---
+
+## 4. USB 3.0 端口 — 运行时问题
+
+!!! warning "症状"
+    - 工作期间周期性连接中断  
+    - 设备无明显原因"消失"于系统  
+    - 切换到其他端口时问题消失  
+
+!!! info "原因"
+    这是一个常见问题，当以 Full Speed（USB 2.0）模式工作的 USB 设备连接到 USB 3.0 端口时会发生。在现代计算机上，USB 3.0 端口使用 eUSB2 中继器，这与 USB 2.0 规范不完全兼容——导致同步故障和设备枚举错误。此问题由 STMicroelectronics 官方确认：[ST 网站上的常见问题](https://community.st.com/t5/stm32-mcus/faq-possible-communication-failure-between-stlink-v3-and-some/ta-p/736578)。
+
+!!! success "解决方案"
+    - 仅将 iHeater 连接到 **USB 2.0 端口**（通常是黑色接头）  
+    - 如果所有端口都是 USB 3.0——使用**带 USB 2.0 端口的有源 USB 集线器**
+
+---
+
+## 5. USB 3.0 端口 — 固件烧录问题
+
+!!! warning "症状"
+    - 控制器在 DFU 模式下无法识别  
+    - 固件烧录以错误或挂起结束  
+    - `dfu-util` 看不到设备或中断写入  
+
+!!! info "原因"
+    相同的 USB 3.0 / xHCI 兼容性问题。特别是通过现代笔记本电脑上的 USB Type-C 端口烧录固件时——它们更常使用有问题的 eUSB2 中继器。
+
+!!! success "解决方案"
+    - 烧录时仅将控制器连接到 **USB 2.0 端口**  
+    - 优先选择 PC 后面板上的 USB Type-A 端口  
+    - 如果问题仍然存在——使用**带 USB 2.0 端口的有源 USB 集线器**

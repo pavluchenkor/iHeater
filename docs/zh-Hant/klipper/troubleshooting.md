@@ -1,9 +1,97 @@
-<!-- i18n-placeholder: true -->
+# iHeater 通訊問題及其解決方案
 
-# Translation wanted
+使用 **iHeater** 時，在某些情況下可能會出現連接穩定性問題（中斷、MCU「掉線」、工作不穩定）。  
+在大多數情況下，這不是設備本身的問題，而是外部因素導致的：振動、電磁干擾或負載特性。
 
-This page is not available in this language yet.
+以下是主要原因及其解決方法。
 
-You can help the iDryer project by translating this article. Please use the English or Russian version as the source, check the meaning carefully, and submit your translation as a pull request to the documentation repository.
+---
 
-Thank you for helping make the documentation available to more makers.
+## 1. USB 線缆振動
+
+!!! warning "症狀"
+    - 週期性連接中斷  
+    - 設備從系統「消失」  
+    - 觸摸線缆時連接恢復  
+
+!!! info "原因"
+    來自印表機的振動可能導致 USB 連接器發生微小移動，從而導致暫時性接觸丟失。
+
+!!! success "解決方案"
+    - 牢固地固定 USB 線缆在連接器中  
+    - 消除線缆張力  
+    - 如有必要：
+        - 使用接頭更緊密的線缆  
+        - 使用熱膠槍、扎帶或夾子固定線缆  
+
+---
+
+## 2. 電源線干擾
+
+!!! warning "症狀"
+    - 啟用加熱或風扇時連接丟失  
+    - 設備隨機重新啟動  
+    - 無明顯原因的不穩定工作  
+
+!!! info "原因"
+    交流電源線產生的電磁干擾會傳導到 USB 線缆上。
+
+ ![ferrite bead](../../img/ferrite_bead.png)
+
+!!! success "解決方案"
+    - 盡可能遠地分離 USB 線缆和電源線  
+    - 不要在同一線管中敷設  
+    - 避免在長段上並行敷設  
+    - 在靠近控制器和/或印表機主板的 USB 線缆上安裝鐵氧體濾波器（鐵氧體圓柱體）
+
+---
+
+## 3. 風扇干擾
+
+!!! warning "症狀"
+    - 風扇啟用/禁用時連接丟失  
+    - 與冷卻風扇工作相符的故障  
+    - PWM 控制時的不穩定性  
+
+!!! info "原因"
+    110-220V 風扇配備開關電源，可能產生類似任何開關電源的干擾。
+    這些干擾可能影響信號線。
+
+![ferrite bead](../../img/snubber1.png)
+![ferrite bead](../../img/snubber2.png)
+
+!!! success "解決方案"
+    建議在風扇兩端並聯安裝 **RC 反衝浪器（snubber）**。或使用鐵氧體濾波器
+
+---
+
+## 4. USB 3.0 連接埠 — 運行期間的問題
+
+!!! warning "症狀"
+    - 工作期間週期性連接中斷  
+    - 設備無明顯原因地從系統「消失」  
+    - 切換到其他連接埠時問題消失  
+
+!!! info "原因"
+    這是以全速模式（USB 2.0）工作的 USB 設備連接到 USB 3.0 連接埠時的常見問題。在現代計算機中，USB 3.0 連接埠使用 eUSB2 中繼器，這些中繼器與 USB 2.0 規範的相容性不完全——這導致同步故障和設備列舉錯誤。該問題已由 STMicroelectronics 官方確認：[ST 網站上的常見問題](https://community.st.com/t5/stm32-mcus/faq-possible-communication-failure-between-stlink-v3-and-some/ta-p/736578)。
+
+!!! success "解決方案"
+    - 僅在 **USB 2.0 連接埠**中連接 iHeater（通常是黑色連接器）  
+    - 如果所有連接埠都是 USB 3.0——使用**配備 USB 2.0 連接埠的有源 USB 集線器**
+
+---
+
+## 5. USB 3.0 連接埠 — 韌體更新期間的問題
+
+!!! warning "症狀"
+    - 控制器在 DFU 模式下無法被識別  
+    - 韌體更新以錯誤或掛起結束  
+    - `dfu-util` 無法看到設備或中斷寫入  
+
+!!! info "原因"
+    相同的 USB 3.0 / xHCI 相容性問題。特別是在通過現代筆記本電腦上的 USB Type-C 連接埠進行韌體更新時——它們更常使用有問題的 eUSB2 中繼器。
+
+!!! success "解決方案"
+    - 進行韌體更新時，僅在 **USB 2.0 連接埠**中連接控制器  
+    - 優先選擇 PC 後面板上的 USB Type-A 連接埠  
+    - 如果問題仍然存在——使用**配備 USB 2.0 連接埠的有源 USB 集線器**

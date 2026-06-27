@@ -1,9 +1,61 @@
-<!-- i18n-placeholder: true -->
+## 接线图
 
-# Translation wanted
+**iHeater** 控制器既可以作为 **Klipper** 系统的一部分运行（作为额外的 MCU），也可以在内置 **standalone** 固件控制下独立运行。
 
-This page is not available in this language yet.
+### 用于 Klipper 的连接
 
-You can help the iDryer project by translating this article. Please use the English or Russian version as the source, check the meaning carefully, and submit your translation as a pull request to the documentation repository.
+要在 Klipper 中正常工作，需要连接：
 
-Thank you for helping make the documentation available to more makers.
+* **USB 线缆** 连接到主机（Host-MCU）- 用于数据传输和 5V 供电；
+* **220V / 110V 电源** - 取决于设备版本和加热器类型；
+* **加热器热敏电阻** - 用于监测加热元件温度；
+* **腔体热敏电阻** - 用于监测打印机腔体内的空气温度；
+* **触发端口** - 可选连接，用于通过外部信号进行自动控制。
+
+工作状态下，iHeater 放置在 3D 打印机腔体内部。
+
+!!! note annotate "建议将腔体热敏电阻放置在打印头高度，尽可能放在 **热床上方**。"
+
+![接线图](../img/iHeater_pinout.png)
+
+## GPIO 配置
+
+| Pin    | Alias       | Function                          |
+|--------|-------------|-----------------------------------|
+| PA0    | TH1         | 腔体温度传感器                    |
+| PA1    | HEATER      | 加热器控制                        |
+| PA2    | FAN         | 风扇控制                          |
+| PA3    | TH0         | 加热器温度传感器                  |
+| PA4    | MODE        | 模式按钮                          |
+| PA5    | LED3        | LED 3                             |
+| PA6    | LED2        | LED 2                             |
+| PA7    | LED1        | LED 1                             |
+| PB1    | TH2         | 额外温度传感器                    |
+
+---
+
+### standalone 模式下使用
+
+在独立模式下，可以使用额外的功能和连接方式：
+
+* **触发端口的热敏电阻模式**
+  将热敏电阻连接到触发端口，并将其放置在热床加热元件附近时，可以启用自动控制：
+  - 当热床温度升高到 **45°C** 以上时 - 开启腔体加热；
+  - 当温度降低到 **85°C** 以下时 - 关闭加热。
+
+* **由外部 5V 电源供电**
+  如果无法使用 USB 供电，可以通过相应接口直接供电。
+
+* **实验性选项**
+  将 [5V 电源直接连接到电路板](https://sl.aliexpress.ru/p?key=OHtN3Xm)。
+
+!!! danger "请勿同时使用 USB 和外部电源"
+    不允许同时连接两个电源。这会导致电源冲突、设备工作错误，并可能损坏设备。
+
+![电源连接](../img/IMG_6009.jpg)
+
+---
+
+### 总体接线图
+
+![接线图](../img/iHeater_connection.png)

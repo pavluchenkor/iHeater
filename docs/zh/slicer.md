@@ -1,9 +1,97 @@
-<!-- i18n-placeholder: true -->
+## 在切片软件中配置启动G代码以正确使用iHeater
 
-# Translation wanted
+为了实现均匀加热和使用工程材料进行稳定打印，重要的是在启动G代码中正确配置命令顺序。以下是将iHeater室温加热集成到切片软件启动代码中的建议（例如Cura、PrusaSlicer、OrcaSlicer等）。
 
-This page is not available in this language yet.
+### 需要做什么
 
-You can help the iDryer project by translating this article. Please use the English or Russian version as the source, check the meaning carefully, and submit your translation as a pull request to the documentation repository.
+在启用室加热前必须：
 
-Thank you for helping make the documentation available to more makers.
+**启用热床加热**
+
+   热床加热有助于室温更均匀快速地升高。这样的热床充当额外的热源，有助于更有效地加热整个室。
+
+   ```
+   M140 S[first_layer_bed_temperature]
+   ```
+
+**启用空气混合风扇（如果使用）**
+
+   这可以是侧面风扇或任何其他用于在室内均匀分配热量的风扇。
+   如果在Klipper配置中它称为例如`chamber_fan`，则：
+
+   ```
+   SET_FAN_SPEED FAN=chamber_fan SPEED=1.0
+   ```
+
+在某些打印机中安装了排气风扇以维持室内最低可能温度，这对于打印PLA和PETG等塑料很重要，但会影响室加热速度。可以为这样的风扇传递新的温度参数，例如目标_室_温度 + 10
+
+```
+SET_TEMPERATURE_FAN_TARGET TEMPERATURE_FAN=chamber_fan TARGET={chamber_temperature + 10}
+```
+
+**使用其中一个宏启用室加热：`M141`或`M191`**
+
+### `M141`和`M191`之间的区别
+
+| 宏 | 用途                                                                   | 是否阻止代码执行                                        |
+| ------ | ------------------------------------------------------------------------------ | ----------------------------------------------------------------- |
+| `M141` | 设置室目标温度                                       | 否（加热开始，但打印立即继续）             |
+| `M191` | 设置室温度并等待其达到设定值 | 是（只有在加热后才会进行下一条命令） |
+
+#### 示例：
+
+* 如果您想立即开始室加热并同时执行所有预准备操作，然后继续打印而无需等待室完全加热，此选项适用。这对于ABS等塑料和大型模型表现良好 - 在打印前几层时，室将有时间加热：
+
+  ```
+  M141 S60
+  ```
+
+* 如果打印小零件或需要稳定的室温度（例如，打印PA、PC和其他敏感材料时），最好使用带有加热等待的命令：
+
+  ```
+  M191 S60
+  ```
+
+### 室加热后
+
+调用其中一个宏（`M141`或`M191`）后，可以继续正常的启动G代码：
+
+```gcode
+M190 S[first_layer_bed_temperature]  等待热床加热
+M109 S[first_layer_temperature]  等待喷嘴加热
+G28  归零
+G29  （如果使用自动调平）
+... 
+```
+
+### 建议
+
+* 如果您使用`M191`，可以设置一个小的偏差，在该偏差处认为室已充分加热（例如，比目标低5°C）- 这在[gcode_macro CHAMBER_VARS]宏中通过`variable_start_offset`配置。
+* 确保所有使用的宏（`M141`、`M191`）在Klipper配置中连接并正确配置。
+* 如果您的切片软件支持条件，可以添加检查：例如，仅在打印温度高于50°C时启用室（对于ABS、ASA等）。
+
+---
+
+### 在切片软件中配置室温度
+
+![Slicer_settings](../img/slicer_settings.jpeg)
+
+在许多现代切片软件中，可以直接在耗材配置中指定所需的室温度。此值可方便地用作`M141`或`M191`宏的`S`参数。
+
+截图显示"Chamber temperature"字段，其中设置了值`60°C`。这只是一个数值 - **不是所有切片软件都会发送室加热命令**。为了温度真正应用，必须检查切片软件的G代码生成，并在必要时在启动G代码中使用命令：
+
+```gcode
+M141 S{chamber_temperature}
+```
+
+或
+
+```gcode
+M191 S{chamber_temperature}
+```
+
+同时确保在切片软件设置中设置了`chamber_temperature`变量，或手动将其替换为数字。
+
+如果激活"Activate temperature control"选项，某些切片软件会自动添加`M191`命令和设置的温度值。如果您希望在打印前进行室加热等待，这很方便。
+
+建议使用通过宏的手动控制，以便对加热逻辑和操作顺序有完全的控制。

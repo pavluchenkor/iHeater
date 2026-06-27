@@ -1,9 +1,97 @@
-<!-- i18n-placeholder: true -->
+## 在切片軟體中配置啟動 G-code 以確保 iHeater 正常工作
 
-# Translation wanted
+為了實現均勻的加熱並使用技術材料進行穩定列印，必須正確配置啟動 G-code 中的命令順序。以下是將 iHeater 室溫加熱整合到您的切片軟體啟動代碼中的建議（例如 Cura、PrusaSlicer、OrcaSlicer 等）。
 
-This page is not available in this language yet.
+### 需要做什麼
 
-You can help the iDryer project by translating this article. Please use the English or Russian version as the source, check the meaning carefully, and submit your translation as a pull request to the documentation repository.
+在啟動室溫加熱之前，必須：
 
-Thank you for helping make the documentation available to more makers.
+**啟動熱床加熱**
+
+   熱床預熱可幫助室溫更均勻、更快速地升溫。這樣的熱床充當額外的熱源，有助於更有效地加熱整個室溫。
+
+   ```
+   M140 S[first_layer_bed_temperature]
+   ```
+
+**啟動空氣混合風扇（如果使用）**
+
+   這可以是側風扇或任何其他旨在在室溫中均勻分佈熱量的風扇。
+   如果在 Klipper 配置中它被稱為，例如 `chamber_fan`，則：
+
+   ```
+   SET_FAN_SPEED FAN=chamber_fan SPEED=1.0
+   ```
+
+在某些印表機中安裝了維持室溫最低溫度的排風扇，這對於列印 PLA 和 PETG 等塑料很重要，但不利於室溫升溫速度。可以向這樣的風扇傳遞新的溫度參數，例如目標_室溫 + 10
+
+```
+SET_TEMPERATURE_FAN_TARGET TEMPERATURE_FAN=chamber_fan TARGET={chamber_temperature + 10}
+```
+
+**使用以下宏之一啟動室溫加熱：`M141` 或 `M191`**
+
+### `M141` 和 `M191` 的區別
+
+| 宏 | 用途 | 是否阻止代碼執行 |
+| ------ | ------------------------------------------------------------------------------ | ----------------------------------------------------------------- |
+| `M141` | 設定室溫目標溫度 | 否（加熱開始，但列印立即繼續） |
+| `M191` | 設定室溫並等待達到指定值 | 是（只有在加熱完成後才會執行下一個命令） |
+
+#### 示例：
+
+* 如果您想立即開始室溫加熱並並行執行所有預備操作以進行加熱，然後繼續列印而無需等待室溫完全加熱，此選項會很好用。對於 ABS 和大型模型等塑料效果很好 - 在列印前幾層時，室溫可能已經升溫：
+
+  ```
+  M141 S60
+  ```
+
+* 如果列印小件或需要穩定的室溫（例如，列印 PA、PC 和其他敏感材料時），最好使用帶有加熱等待的命令：
+
+  ```
+  M191 S60
+  ```
+
+### 室溫加熱後
+
+調用其中一個宏（`M141` 或 `M191`）後，您可以繼續常規啟動 G-code：
+
+```gcode
+M190 S[first_layer_bed_temperature]  等待熱床加熱
+M109 S[first_layer_temperature]  等待噴頭加熱
+G28  回位
+G29  (如果使用自動校準)
+... 
+```
+
+### 建議
+
+* 如果您使用 `M191`，可以設定一個小偏差，當室溫被視為充分加熱時（例如，低於目標 5°C） - 這在宏 [gcode_macro CHAMBER_VARS] `variable_start_offset` 中配置。
+* 確保所有使用的宏（`M141`、`M191`）都在 Klipper 配置中連接並正確配置。
+* 如果您的切片軟體支持條件，可以添加檢查：例如，僅當列印溫度高於 50°C 時才啟動室溫加熱（對於 ABS、ASA 等）。
+
+---
+
+### 在切片軟體中配置熱室溫度
+
+![Slicer_settings](../img/slicer_settings.jpeg)
+
+在許多現代切片軟體中，可以直接在耗材配置文件中指定所需的熱室溫度。此值可方便地用作宏 `M141` 或 `M191` 的 `S` 參數。
+
+螢幕截圖顯示了"Chamber temperature"欄位，其中設定了值 `60°C`。這只是一個數值 - **並非所有切片軟體都會發送室溫加熱命令**。為了確保溫度確實被應用，需要檢查切片軟體生成的 G-code 並在必要時在啟動 G-code 中使用命令：
+
+```gcode
+M141 S{chamber_temperature}
+```
+
+或
+
+```gcode
+M191 S{chamber_temperature}
+```
+
+同時確保在切片軟體設定中設定了 `chamber_temperature` 變數，或手動將其替換為數字。
+
+如果啟用"Activate temperature control"選項，某些切片軟體會自動添加具有指定溫度值的 `M191` 命令。如果您希望室溫加熱在列印前等待完成，這會很方便。
+
+建議使用通過宏進行手動管理，以便對加熱邏輯和操作順序進行完全控制。
