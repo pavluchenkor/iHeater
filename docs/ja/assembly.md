@@ -1,9 +1,70 @@
-<!-- i18n-placeholder: true -->
+# 組み立て
 
-# Translation wanted
+ドキュメントを確認し、必要な部品をダウンロードして印刷してください。組み立てを開始する前に、すべてのコンポーネントと工具が揃っていることを確認してください。
 
-This page is not available in this language yet.
+!!! danger "商用電源電圧の取り扱い"
+    110–230 V の電源接続に関する作業は、必ず装置の電源を切った状態で行ってください。詳細は [安全](safety.md) セクションを参照してください。
 
-You can help the iDryer project by translating this article. Please use the English or Russian version as the source, check the meaning carefully, and submit your translation as a pull request to the documentation repository.
+## 組み立て前
 
-Thank you for helping make the documentation available to more makers.
+まずシステム全体をケースに取り付けず、**作業台の上で**組み立ててテストすることを推奨します。
+
+- **すべての**コンポーネントを接続する。
+- ヒーター、ファン、温度センサーの動作を確認する。
+- システムを **Klipper** に接続するか、Standalone ファームウェアを書き込み、正常に動作することを確認する。
+
+Video guide: [YouTube](https://youtu.be/1QMtVY0Vx-8?si=Ol1u4Ux9wALDcfe2)
+
+## 手順
+
+### 基板の取り付け
+
+![iHeater の組み立て](../img/iHeater_5484.jpg)
+
+### サーミスタと Thermal Protector の取り付け
+
+!!! warning "サーミスタの取り付け"
+    サーミスタ根元の露出した配線部が、ヒーターの金属ケースに接触していないことを確認してください。必要に応じて、その部分をカプトンテープで絶縁するか、テフロンチューブ / 熱収縮チューブに入れてください。
+
+    ヒーターの温度は 140 °C に達する場合があります。
+
+!!! warning "Thermal Protector の取り付け"
+    KSD9700（Thermal Protector、自己復帰型）または使い切りの Thermal Fuse を取り付けることができます。
+
+    KSD9700 は過熱時に回路を開き、冷却後に自動的に再接続します。Thermal Fuse（例: **RH130**）は作動すると回路を恒久的に遮断します。故障時には、より信頼性の高い保護になります。
+
+    デバッグ段階では KSD9700 を使用し、その後、常用運転用に Thermal Fuse に交換してください。
+
+![iHeater の組み立て](../img/iHeater_5489.jpg)
+![iHeater の組み立て](../img/thermistor.jpg)
+
+### ヒーターの取り付け
+
+!!! warning "サーミスタの取り付け"
+    サーミスタはヒーターの端付近、ヒートシンクフィンの高さのほぼ中央に取り付けてください。
+
+    サーミスタ根元の露出した配線部が、ヒーターの金属ケースに接触しないようにしてください。必要に応じて、その部分をカプトンテープで絶縁するか、テフロンチューブ / 熱収縮チューブに入れてください。
+
+    ヒーターの温度は 140 °C に達する場合があります。
+
+![iHeater の組み立て](../img/iHeater_5491.jpg)
+
+### 配線
+
+![iHeater の組み立て](../img/iHeater_5494.jpg)
+
+### フェルール端子の取り付け
+
+![iHeater の組み立て](../img/iHeater_5496.jpg)
+
+### 結線
+
+![iHeater の組み立て](../img/iHeater_5498.jpg)
+
+### 最終組み立て
+
+![iHeater の組み立て](../img/iHeater_5500.jpg)
+
+### 完成品
+
+![iHeater の組み立て](../img/iHeater_5506.jpg)

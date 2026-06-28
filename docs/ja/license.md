@@ -1,9 +1,28 @@
-<!-- i18n-placeholder: true -->
+本ライセンスは他のライセンスに優先するものではなく、それらを補完するものです。
 
-# Translation wanted
+### プロジェクト資料の利用ライセンス
+私的利用
+本プロジェクトのすべての資料は、個人利用を目的として無償で提供されます。自身の目的のために、制限なく資料をコピー、利用、学習できます。
 
-This page is not available in this language yet.
+### 変更および配布
+プロジェクトの資料を変更することが許可されています。ただし、変更版を配布する場合は、以下を行う必要があります。
 
-You can help the iDryer project by translating this article. Please use the English or Russian version as the source, check the meaning carefully, and submit your translation as a pull request to the documentation repository.
+### 資料の原著作者を明記すること。
+変更内容のソースコードを同じライセンスの下で公開すること。
+変更版に本ライセンスの本文を添付すること。
 
-Thank you for helping make the documentation available to more makers.
+### 商用利用
+プロジェクトの資料を商用目的で利用するには、事前に著作者へ連絡し、許可を得る必要があります。連絡先情報は、プロジェクトファイルまたは公式情報源に記載されています。
+
+### 免責事項
+プロジェクトの資料は「現状有姿」で提供されます。著作者は、その利用により生じたいかなる直接的または間接的な損害についても責任を負いません。
+
+### ライセンスへの同意
+プロジェクトの資料を利用することにより、本ライセンスの条項に同意したものとみなされます。
+
+Creative Commons Attribution-NonCommercial-ShareAlike 3.0 License
+
+Attribution-NonCommercial-ShareAlike 3.0 Unported (CC BY-NC-SA 3.0)
+
+### 連絡先
+https://t.me/pavluchenkor

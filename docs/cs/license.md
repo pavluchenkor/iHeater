@@ -1,9 +1,28 @@
-<!-- i18n-placeholder: true -->
+Tato licence nenahrazuje jiné licence, ale doplňuje je.
 
-# Translation wanted
+### Licence pro používání materiálů projektu
+Soukromé použití
+Všechny materiály tohoto projektu jsou poskytovány zdarma pro osobní použití. Materiály smíte bez omezení kopírovat, používat a studovat pro své vlastní potřeby.
 
-This page is not available in this language yet.
+### Úpravy a distribuce
+Materiály projektu smíte upravovat. Při distribuci upravených verzí však musíte:
 
-You can help the iDryer project by translating this article. Please use the English or Russian version as the source, check the meaning carefully, and submit your translation as a pull request to the documentation repository.
+### Uvést původního autora materiálů.
+Zveřejnit zdrojový kód svých úprav pod stejnou licencí.
+Doplnit upravené verze textem této licence.
 
-Thank you for helping make the documentation available to more makers.
+### Komerční použití
+Chcete-li materiály projektu používat ke komerčním účelům, musíte nejprve kontaktovat autora a získat jeho svolení. Kontaktní informace jsou uvedeny v souborech projektu nebo v oficiálních zdrojích.
+
+### Vyloučení odpovědnosti
+Materiály projektu jsou poskytovány „tak, jak jsou“. Autor nenese odpovědnost za žádné přímé ani nepřímé škody vzniklé jejich použitím.
+
+### Přijetí licence
+Používáním materiálů projektu potvrzujete svůj souhlas s podmínkami této licence.
+
+Licence Creative Commons Attribution-NonCommercial-ShareAlike 3.0
+
+Attribution-NonCommercial-ShareAlike 3.0 Unported (CC BY-NC-SA 3.0)
+
+### Kontaktujte mě
+https://t.me/pavluchenkor

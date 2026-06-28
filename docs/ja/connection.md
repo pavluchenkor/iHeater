@@ -1,9 +1,61 @@
-<!-- i18n-placeholder: true -->
+## 接続図
 
-# Translation wanted
+**iHeater** コントローラーは、**Klipper** システムの一部（追加 MCU として）としても、内蔵 **standalone** ファームウェアで単体でも動作できます。
 
-This page is not available in this language yet.
+### Klipper で使用する場合の接続
 
-You can help the iDryer project by translating this article. Please use the English or Russian version as the source, check the meaning carefully, and submit your translation as a pull request to the documentation repository.
+Klipper の一部として正しく動作させるには、以下を接続する必要があります。
 
-Thank you for helping make the documentation available to more makers.
+* メインホスト（Host-MCU）への **USB ケーブル** - データ転送と 5V 電源供給に使用します。
+* **220V / 110V の主電源** - デバイスのバージョンとヒーターの種類によって異なります。
+* **ヒーター用サーミスター** - 発熱体の温度を監視します。
+* **チャンバー用サーミスター** - プリンターのチャンバー内の空気温度を監視します。
+* **トリガーポート** - 任意接続です。外部信号による自動制御に使用します。
+
+動作時、iHeater は 3D プリンターのチャンバー内に設置します。
+
+!!! note annotate "チャンバー用サーミスターは、可能であれば **ベッドの上**、プリントヘッドの高さに配置することを推奨します。"
+
+![接続図](../img/iHeater_pinout.png)
+
+## GPIO 設定
+
+| Pin    | Alias       | Function                          |
+|--------|-------------|-----------------------------------|
+| PA0    | TH1         | チャンバー温度センサー            |
+| PA1    | HEATER      | ヒーター制御                      |
+| PA2    | FAN         | ファン制御                        |
+| PA3    | TH0         | ヒーター温度センサー              |
+| PA4    | MODE        | モードボタン                      |
+| PA5    | LED3        | LED 3                             |
+| PA6    | LED2        | LED 2                             |
+| PA7    | LED1        | LED 1                             |
+| PB1    | TH2         | 追加温度センサー                  |
+
+---
+
+### standalone モードでの使用
+
+単体モードでは、追加機能と接続方法を利用できます。
+
+* **サーミスターモードのトリガーポート**
+  サーミスターをトリガーポートに接続し、ベッドの発熱体の近くに配置すると、自動制御を有効にできます。
+  - ベッドの温度が **45°C** を超えると、チャンバー加熱がオンになります。
+  - 温度が **85°C** 未満に下がると、加熱がオフになります。
+
+* **外部 5V 電源からの給電**
+  USB 給電を使用できない場合は、対応するコネクターから直接給電できます。
+
+* **実験的オプション**
+  [5V 電源を基板に直接接続する](https://sl.aliexpress.ru/p?key=OHtN3Xm)方法です。
+
+!!! danger "USB と外部電源を同時に使用しないでください"
+    2 つの電源を同時に接続することはできません。電源同士の競合、デバイスの動作エラーを引き起こし、機器を故障させる可能性があります。
+
+![電源接続](../img/IMG_6009.jpg)
+
+---
+
+### 全体の接続図
+
+![接続図](../img/iHeater_connection.png)
