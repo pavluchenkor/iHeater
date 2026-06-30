@@ -8,5 +8,6 @@ nav:
   - Klipper: klipper
   - Slicer: slicer.md
   - Usage: usage.md
+  - FAQ: faq
   - License: license.md
   - Katapult: katapult.md
