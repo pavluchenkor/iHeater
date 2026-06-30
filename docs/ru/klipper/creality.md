@@ -57,4 +57,4 @@
 Далее следуйте инструкции по настройке iHeater - настройка термистора, нагревателя, режимов работы и макросов.
 
 !!! warning "Если нет возможности собрать и прошить прошивку на принтере"
-    [Обратитесь к разделу WSL](../user-mods/software/wsl2-ubuntu-ff/)
+    [Обратитесь к разделу WSL](https://github.com/pavluchenkor/iHeater/tree/main/User-mods/software/WSL2_Ubuntu_FF)

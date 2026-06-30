@@ -12,7 +12,7 @@ Ce document contient les instructions de compilation et de flashage du chargeur 
 - Système Linux (par exemple, Raspberry Pi ou imprimante)
 
 !!! warning "S'il n'est pas possible de compiler et de flasher le firmware sur l'imprimante"
-    [Consultez la section WSL](../user-mods/software/wsl2-ubuntu-ff/)
+    [Consultez la section WSL](https://github.com/pavluchenkor/iHeater/tree/main/User-mods/software/WSL2_Ubuntu_FF)
 
 ---
 

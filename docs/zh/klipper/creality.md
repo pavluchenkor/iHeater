@@ -57,4 +57,4 @@
 接下来，请按照 iHeater 设置说明继续操作：配置热敏电阻、加热器、工作模式和宏。
 
 !!! warning "如果无法在打印机上构建并刷写固件"
-    [请参阅 WSL 章节](../user-mods/software/wsl2-ubuntu-ff/)
+    [请参阅 WSL 章节](https://github.com/pavluchenkor/iHeater/tree/main/User-mods/software/WSL2_Ubuntu_FF)

@@ -12,7 +12,7 @@
 - Linux 系统（例如 Raspberry Pi 或打印机）
 
 !!! warning "如果无法在打印机上构建和刷写固件"
-    [请参阅 WSL 章节](../user-mods/software/wsl2-ubuntu-ff/)
+    [请参阅 WSL 章节](https://github.com/pavluchenkor/iHeater/tree/main/User-mods/software/WSL2_Ubuntu_FF)
 
 ---
 

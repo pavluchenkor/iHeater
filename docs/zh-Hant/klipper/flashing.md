@@ -12,7 +12,7 @@
 - Linux 系統（例如 Raspberry Pi 或印表機）
 
 !!! warning "如果無法在印表機上編譯和刷寫固件"
-    [請參考 WSL 部分](../user-mods/software/wsl2-ubuntu-ff/)
+    [請參考 WSL 部分](https://github.com/pavluchenkor/iHeater/tree/main/User-mods/software/WSL2_Ubuntu_FF)
 
 ---
 

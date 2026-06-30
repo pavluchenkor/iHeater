@@ -12,7 +12,7 @@ This document provides instructions for building and flashing the **Katapult** b
 * Linux system (e.g., Raspberry Pi or 3D printer)
 
 !!! warning "If you cannot build and flash firmware on the printer"
-    [Refer to the WSL section](../user-mods/software/wsl2-ubuntu-ff/)
+    [Refer to the WSL section](https://github.com/pavluchenkor/iHeater/tree/main/User-mods/software/WSL2_Ubuntu_FF)
 
 ---
 

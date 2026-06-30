@@ -57,4 +57,4 @@ Luego abra `printer.cfg` y añada la siguiente línea al final del archivo:
 A continuación, siga las instrucciones de configuración de iHeater: configuración del termistor, calentador, modos de funcionamiento y macros.
 
 !!! warning "Si no es posible compilar y flashear el firmware en la impresora"
-    [Consulte la sección WSL](../user-mods/software/wsl2-ubuntu-ff/)
+    [Consulte la sección WSL](https://github.com/pavluchenkor/iHeater/tree/main/User-mods/software/WSL2_Ubuntu_FF)

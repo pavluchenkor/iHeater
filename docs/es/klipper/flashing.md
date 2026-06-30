@@ -12,7 +12,7 @@ Este documento contiene instrucciones para compilar y flashear el bootloader **K
 - Sistema Linux (por ejemplo, Raspberry Pi o impresora)
 
 !!! warning "Si no es posible compilar y flashear el firmware en la impresora"
-    [Consulte la sección WSL](../user-mods/software/wsl2-ubuntu-ff/)
+    [Consulte la sección WSL](https://github.com/pavluchenkor/iHeater/tree/main/User-mods/software/WSL2_Ubuntu_FF)
 
 ---
 

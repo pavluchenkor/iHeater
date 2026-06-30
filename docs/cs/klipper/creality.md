@@ -57,4 +57,4 @@ Poté otevřete `printer.cfg` a na konec souboru přidejte řádek:
 Dále postupujte podle návodu k nastavení iHeater - nastavení termistoru, ohřívače, provozních režimů a maker.
 
 !!! warning "Pokud není možné sestavit a nahrát firmware do tiskárny"
-    [Přejděte do části WSL](../user-mods/software/wsl2-ubuntu-ff/)
+    [Přejděte do části WSL](https://github.com/pavluchenkor/iHeater/tree/main/User-mods/software/WSL2_Ubuntu_FF)

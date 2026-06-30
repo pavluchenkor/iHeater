@@ -12,7 +12,7 @@ Tento dokument obsahuje pokyny pro sestavení a flashování bootloaderu **Katap
 - Linuxový systém (například Raspberry Pi nebo tiskárna)
 
 !!! warning "Pokud není možné sestavit a flashovat firmware na tiskárně"
-    [Přejděte do sekce WSL](../user-mods/software/wsl2-ubuntu-ff/)
+    [Přejděte do sekce WSL](https://github.com/pavluchenkor/iHeater/tree/main/User-mods/software/WSL2_Ubuntu_FF)
 
 ---
 

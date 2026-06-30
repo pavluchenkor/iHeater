@@ -57,4 +57,4 @@ Helper Script を使用した Creality プリンターでは、デフォルト�
 続いて、サーミスター、ヒーター、動作モード、マクロなど、iHeater の設定手順に従ってください。
 
 !!! warning "プリンター上でファームウェアをビルドして書き込めない場合"
-    [WSL のセクションを参照してください](../user-mods/software/wsl2-ubuntu-ff/)
+    [WSL のセクションを参照してください](https://github.com/pavluchenkor/iHeater/tree/main/User-mods/software/WSL2_Ubuntu_FF)

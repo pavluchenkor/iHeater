@@ -12,7 +12,7 @@ Dieses Dokument enthält Anweisungen zum Erstellen und Flashen des Bootloaders *
 - Linux-System (zum Beispiel Raspberry Pi oder Drucker)
 
 !!! warning "Wenn es nicht möglich ist, die Firmware auf dem Drucker zu erstellen und zu flashen"
-    [Siehe Abschnitt WSL](../user-mods/software/wsl2-ubuntu-ff/)
+    [Siehe Abschnitt WSL](https://github.com/pavluchenkor/iHeater/tree/main/User-mods/software/WSL2_Ubuntu_FF)
 
 ---
 

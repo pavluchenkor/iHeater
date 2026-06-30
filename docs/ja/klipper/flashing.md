@@ -12,7 +12,7 @@
 - Linux システム（例: Raspberry Pi またはプリンター）
 
 !!! warning "プリンター上でファームウェアをビルドして書き込めない場合"
-    [WSL のセクションを参照してください](../user-mods/software/wsl2-ubuntu-ff/)
+    [WSL のセクションを参照してください](https://github.com/pavluchenkor/iHeater/tree/main/User-mods/software/WSL2_Ubuntu_FF)
 
 ---
 

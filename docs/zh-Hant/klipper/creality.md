@@ -57,4 +57,4 @@ Creality 印表機上的 Helper Script 預設可能已建立 `fan-control.cfg` �
 接下來，請按照 iHeater 配置說明進行操作 - 配置熱敏電阻、加熱器、工作模式及巨集。
 
 !!! warning "如果無法在印表機上編譯並刷入韌體"
-    [請參閱 WSL 部分](../user-mods/software/wsl2-ubuntu-ff/)
+    [請參閱 WSL 部分](https://github.com/pavluchenkor/iHeater/tree/main/User-mods/software/WSL2_Ubuntu_FF)
