@@ -13,6 +13,8 @@ Es sind zwei Versionen verfügbar:
 
 ![iHeater](../img/iHeater_promo.png)
 
+[Eine Vorabschätzung können Sie mit diesem Rechner durchführen](https://docs.google.com/spreadsheets/d/1u6XrWLFZGOUnRlFPjjGsJB_GLuFFIs3fFWLCp2-K8gc/edit?usp=sharing)
+
 ## Einsatzmöglichkeiten
 
 ### Unter Steuerung von Klipper

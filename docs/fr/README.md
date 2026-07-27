@@ -13,6 +13,8 @@ Deux versions sont disponibles :
 
 ![iHeater](../img/iHeater_promo.png)
 
+[Vous pouvez effectuer un calcul préliminaire à l'aide de cette calculatrice](https://docs.google.com/spreadsheets/d/1u6XrWLFZGOUnRlFPjjGsJB_GLuFFIs3fFWLCp2-K8gc/edit?usp=sharing)
+
 ## Cas d'utilisation
 
 ### Sous le contrôle de Klipper

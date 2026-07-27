@@ -13,6 +13,10 @@ iHeater — компактный нагреватель для создания 
 
 ![iHeater](../img/iHeater_promo.png)
 
+[Предварительный расчет можно сделать воспользовавшись этим калькулятором](https://docs.google.com/spreadsheets/d/1u6XrWLFZGOUnRlFPjjGsJB_GLuFFIs3fFWLCp2-K8gc/edit?usp=sharing)
+
+
+
 ## Варианты использования
 
 ### Под управлением Klipper

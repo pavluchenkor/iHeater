@@ -13,6 +13,8 @@ Two versions are available:
 
 ![iHeater](../img/iHeater_promo.png)
 
+[You can make a preliminary estimate using this calculator](https://docs.google.com/spreadsheets/d/1u6XrWLFZGOUnRlFPjjGsJB_GLuFFIs3fFWLCp2-K8gc/edit?usp=sharing)
+
 ## Usage Options
 
 ### Under Klipper Control

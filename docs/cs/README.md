@@ -13,6 +13,8 @@ Dostupné jsou dvě verze:
 
 ![iHeater](../img/iHeater_promo.png)
 
+[Předběžný výpočet lze provést pomocí této kalkulačky](https://docs.google.com/spreadsheets/d/1u6XrWLFZGOUnRlFPjjGsJB_GLuFFIs3fFWLCp2-K8gc/edit?usp=sharing)
+
 ## Způsoby použití
 
 ### Pod řízením Klipper

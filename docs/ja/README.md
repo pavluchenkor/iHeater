@@ -13,6 +13,8 @@ iHeater はベッド加熱と組み合わせることで、チャンバー全体
 
 ![iHeater](../img/iHeater_promo.png)
 
+[このカリキュレーターで事前試算を行えます](https://docs.google.com/spreadsheets/d/1u6XrWLFZGOUnRlFPjjGsJB_GLuFFIs3fFWLCp2-K8gc/edit?usp=sharing)
+
 ## 使用方法
 
 ### Klipper 制御下で使用

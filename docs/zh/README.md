@@ -13,6 +13,8 @@ iHeater 是一款紧凑型加热器，用于在 3D 打印机中创建主动恒�
 
 ![iHeater](../img/iHeater_promo.png)
 
+[您可以使用此计算器进行初步估算](https://docs.google.com/spreadsheets/d/1u6XrWLFZGOUnRlFPjjGsJB_GLuFFIs3fFWLCp2-K8gc/edit?usp=sharing)
+
 ## 使用方式
 
 ### 由 Klipper 控制
