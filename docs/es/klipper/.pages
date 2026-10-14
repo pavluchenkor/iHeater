@@ -3,4 +3,5 @@ nav:
   - Firmware: flashing.md
   - Configuración: configuration.md
   - Creality: creality.md
+  - Snapmaker U1: snapmaker-u1.md
   - Solución de problemas: troubleshooting.md

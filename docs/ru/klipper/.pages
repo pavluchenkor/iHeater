@@ -3,4 +3,5 @@ nav:
   - Прошивка: flashing.md
   - Конфигурация: configuration.md
   - Creality: creality.md
+  - Snapmaker U1: snapmaker-u1.md
   - Устранение неисправностей: troubleshooting.md
