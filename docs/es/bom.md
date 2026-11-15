@@ -4,7 +4,7 @@ Lista de componentes para montar un iHeater: electrónica, sensores, tornillerí
 
 | | Name | Link | Quantity |
 |---|---|---|---|
-|  | PTC Ceramic Air Heater 220V\|110V (se necesita 1 de los 3 elementos calefactores) | [enlace](https://aliexpress.ru/item/1476109411.html) | 1 |
+| ![](../img/bom-heater.png) | PTC Ceramic Air Heater 220V\|110V (se necesita 1 de los 3 elementos calefactores) | [enlace](https://aliexpress.ru/item/1476109411.html) | 1 |
 | ![](../img/bom-blower.png) | Ec7530 Turbine Blower Double Ball Bearing 220V\|110V | [enlace](https://www.aliexpress.com/item/1005003429103124.html) | 1 |
 | ![](../img/bom-pcb.png) | PCB iHeater |  | 1 |
 | ![](../img/bom-psu-5v.png) | AC-DC Power Module AC 50–270V / DC 5V 700mA |  | 1 |

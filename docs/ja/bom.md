@@ -4,7 +4,7 @@ iHeater を1台組み立てるために必要な部品の一覧です。電子�
 
 | | Name | Link | Quantity |
 |---|---|---|---|
-|  | PTC Ceramic Air Heater 220V\|110V (3つの発熱体のうち1つを使用) | [リンク](https://aliexpress.ru/item/1476109411.html) | 1 |
+| ![](../img/bom-heater.png) | PTC Ceramic Air Heater 220V\|110V (3つの発熱体のうち1つを使用) | [リンク](https://aliexpress.ru/item/1476109411.html) | 1 |
 | ![](../img/bom-blower.png) | Ec7530 Turbine Blower Double Ball Bearing 220V\|110V | [リンク](https://www.aliexpress.com/item/1005003429103124.html) | 1 |
 | ![](../img/bom-pcb.png) | PCB iHeater |  | 1 |
 | ![](../img/bom-psu-5v.png) | AC-DC Power Module AC 50–270V / DC 5V 700mA |  | 1 |
