@@ -4,7 +4,7 @@ List of components for assembling one iHeater: electronics, sensors, fasteners, 
 
 | | Name | Link | Quantity |
 |---|---|---|---|
-|  | PTC Ceramic Air Heater 220V\|110V | [link](https://aliexpress.ru/item/1005007366879102.html) | 1 |
+|  | PTC Ceramic Air Heater 220V\|110V (1 of the 3 heating elements is required) | [link](https://aliexpress.ru/item/1476109411.html) | 1 |
 | ![](../img/bom-blower.png) | Ec7530 Turbine Blower Double Ball Bearing 220V\|110V | [link](https://www.aliexpress.com/item/1005003429103124.html) | 1 |
 | ![](../img/bom-pcb.png) | PCB iHeater |  | 1 |
 | ![](../img/bom-psu-5v.png) | AC-DC Power Module AC 50–270V / DC 5V 700mA |  | 1 |
