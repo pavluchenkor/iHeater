@@ -63,6 +63,24 @@ Abaixo estão as principais causas e formas de resolvê-las.
 !!! success "Solução"
     Recomenda-se instalar um **RC snubber (snubber)** em paralelo com a ventoinha. Ou usar um filtro de ferrite
 
+### Bobina de modo comum
+
+!!! danger "Tensão de rede"
+    A bobina é ligada ao circuito de 110–230 V. Faça a montagem apenas com o dispositivo desligado da rede.
+
+A bobina de modo comum (common mode choke) é um dos métodos testados mais eficazes para suprimir as interferências da fonte de alimentação da ventoinha. Suprime o ruído de modo comum nas linhas L e N e não afeta a alimentação da ventoinha.
+
+![Bobina de modo comum](../../img/common_mode_choke.jpg)
+
+Ligue a bobina em série na alimentação da ventoinha:
+
+![Esquema de ligação](../../img/common_mode_choke_schematic.png)
+
+1. Passe a linha L pelo enrolamento 1–4 e a linha N pelo enrolamento 2–3.
+2. Ligue os pinos 1 e 2 (marcados com um ponto) ao terminal FAN da placa iHeater e os pinos 4 e 3 à ventoinha.
+
+O esquema mostra a bobina `PDUUAT98-103MLN`.
+
 ---
 
 ## 4. Porta USB 3.0 — problemas durante a operação

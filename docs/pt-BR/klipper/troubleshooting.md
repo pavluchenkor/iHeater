@@ -63,6 +63,24 @@ Abaixo estão as principais causas e formas de corrigi-las.
 !!! success "Solução"
     Recomenda-se instalar um **RC snubber (snubber)** em paralelo com o ventilador. Ou usar um filtro de ferrite
 
+### Indutor de modo comum
+
+!!! danger "Tensão de rede"
+    O indutor é ligado ao circuito de 110–230 V. Faça a montagem somente com o dispositivo desconectado da rede.
+
+O indutor de modo comum (common mode choke) é um dos métodos testados mais eficazes para suprimir as interferências da fonte de alimentação do ventilador. Ele suprime o ruído de modo comum nas linhas L e N e não afeta a alimentação do ventilador.
+
+![Indutor de modo comum](../../img/common_mode_choke.jpg)
+
+Conecte o indutor em série na alimentação do ventilador:
+
+![Esquema de ligação](../../img/common_mode_choke_schematic.png)
+
+1. Passe a linha L pelo enrolamento 1–4 e a linha N pelo enrolamento 2–3.
+2. Conecte os pinos 1 e 2 (marcados com um ponto) ao terminal FAN da placa iHeater e os pinos 4 e 3 ao ventilador.
+
+O esquema mostra o indutor `PDUUAT98-103MLN`.
+
 ---
 
 ## 4. Porta USB 3.0: problemas durante a operação

@@ -63,6 +63,24 @@ Nize jsou uvedeny hlavni priciny a zpusoby jejich odstraneni.
 !!! success "Reseni"
     Doporucuje se nainstalovat **RC snubber (snubber)** paralelne k ventilatoru. Nebo pouzit feritovy filtr
 
+### Souhlasná tlumivka
+
+!!! danger "Síťové napětí"
+    Tlumivka se zapojuje do obvodu 110–230 V. Montáž provádějte pouze na odpojeném zařízení.
+
+Souhlasná tlumivka (common mode choke) je jedním z nejúčinnějších ověřených způsobů potlačení rušení ze zdroje ventilátoru. Potlačuje souhlasné rušení na vodičích L a N a neovlivňuje napájení ventilátoru.
+
+![Souhlasná tlumivka](../../img/common_mode_choke.jpg)
+
+Zapojte tlumivku do přerušení napájení ventilátoru:
+
+![Schéma zapojení](../../img/common_mode_choke_schematic.png)
+
+1. Vodič L veďte přes vinutí 1–4, vodič N přes vinutí 2–3.
+2. Vývody 1 a 2 (označené tečkou) připojte ke svorce FAN desky iHeater, vývody 4 a 3 k ventilátoru.
+
+Na schématu je tlumivka `PDUUAT98-103MLN`.
+
 ---
 
 ## 4. Port USB 3.0 - problemy pri provozu

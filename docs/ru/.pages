@@ -3,6 +3,7 @@ nav:
   - О проекте: README.md
   - Безопасность: safety.md
   - CAD: cad.md
+  - Комплектация (BOM): bom.md
   - Сборка: assembly.md
   - Подключение: connection.md
   - Klipper: klipper

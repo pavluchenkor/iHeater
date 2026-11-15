@@ -63,6 +63,24 @@ Vous trouverez ci-dessous les causes principales et les méthodes pour les élim
 !!! success "Solution"
     Il est recommandé d'installer un **RC snubber (snubber)** en parallèle avec le ventilateur. Ou d'utiliser un filtre ferrite
 
+### Self de mode commun
+
+!!! danger "Tension secteur"
+    La self est raccordée au circuit 110–230 V. Effectuez le montage uniquement appareil hors tension.
+
+La self de mode commun (common mode choke) est l'un des moyens éprouvés les plus efficaces pour supprimer les perturbations de l'alimentation du ventilateur. Elle atténue le bruit de mode commun sur les lignes L et N et n'affecte pas l'alimentation du ventilateur.
+
+![Self de mode commun](../../img/common_mode_choke.jpg)
+
+Insérez la self en série dans l'alimentation du ventilateur :
+
+![Schéma de raccordement](../../img/common_mode_choke_schematic.png)
+
+1. Faites passer la ligne L par l'enroulement 1–4 et la ligne N par l'enroulement 2–3.
+2. Raccordez les broches 1 et 2 (repérées par un point) à la borne FAN de la carte iHeater, et les broches 4 et 3 au ventilateur.
+
+Le schéma montre la self `PDUUAT98-103MLN`.
+
 ---
 
 ## 4. Port USB 3.0 — problèmes en fonctionnement

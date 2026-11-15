@@ -3,6 +3,7 @@ nav:
   - プロジェクト概要: README.md
   - 安全: safety.md
   - CAD: cad.md
+  - 部品表 (BOM): bom.md
   - 組み立て: assembly.md
   - 接続: connection.md
   - Klipper: klipper

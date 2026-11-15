@@ -63,6 +63,24 @@ A continuación se indican las causas principales y cómo solucionarlas.
 !!! success "Solución"
     Se recomienda instalar un **RC snubber (snubber)** en paralelo con el ventilador. O usar un filtro de ferrita
 
+### Choque de modo común
+
+!!! danger "Tensión de red"
+    El choque se conecta al circuito de 110–230 V. Realice el montaje solo con el dispositivo desconectado de la red.
+
+El choque de modo común (common mode choke) es uno de los métodos probados más eficaces para suprimir las interferencias de la fuente de alimentación del ventilador. Suprime el ruido de modo común en las líneas L y N y no afecta a la alimentación del ventilador.
+
+![Choque de modo común](../../img/common_mode_choke.jpg)
+
+Conecte el choque en serie con la alimentación del ventilador:
+
+![Esquema de conexión](../../img/common_mode_choke_schematic.png)
+
+1. Pase la línea L por el devanado 1–4 y la línea N por el devanado 2–3.
+2. Conecte los pines 1 y 2 (marcados con un punto) al terminal FAN de la placa iHeater, y los pines 4 y 3 al ventilador.
+
+El esquema muestra el choque `PDUUAT98-103MLN`.
+
 ---
 
 ## 4. Puerto USB 3.0: problemas durante el uso

@@ -3,6 +3,7 @@ nav:
   - Über das Projekt: README.md
   - Sicherheit: safety.md
   - CAD: cad.md
+  - Stückliste (BOM): bom.md
   - Montage: assembly.md
   - Anschluss: connection.md
   - Klipper: klipper

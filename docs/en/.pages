@@ -3,6 +3,7 @@ nav:
   - About the project: README.md
   - Safety: safety.md
   - CAD: cad.md
+  - BOM: bom.md
   - Assembly: assembly.md
   - Connection: connection.md
   - Klipper: klipper

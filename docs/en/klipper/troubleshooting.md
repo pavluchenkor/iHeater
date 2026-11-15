@@ -63,4 +63,22 @@ Below are the main causes and ways to resolve them.
 !!! success "Solution"
     It is recommended to install an **RC snubber** in parallel with the fan, or use a ferrite filter.
 
+### Common mode choke
+
+!!! danger "Mains voltage"
+    The choke is connected to the 110–230 V circuit. Install it only with the device disconnected from mains.
+
+A common mode choke is one of the most effective proven ways to suppress interference from the fan power supply. It suppresses common mode noise on the L and N lines and does not affect the fan supply.
+
+![Common mode choke](../../img/common_mode_choke.jpg)
+
+Connect the choke in series with the fan power lines:
+
+![Wiring diagram](../../img/common_mode_choke_schematic.png)
+
+1. Route the L line through winding 1–4 and the N line through winding 2–3.
+2. Connect pins 1 and 2 (marked with a dot) to the FAN terminal of the iHeater board, and pins 4 and 3 to the fan.
+
+The diagram shows the `PDUUAT98-103MLN` choke.
+
     

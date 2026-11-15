@@ -63,6 +63,24 @@ Nachfolgend sind die wichtigsten Ursachen und Möglichkeiten zu ihrer Behebung a
 !!! success "Lösung"
     Es wird empfohlen, einen **RC-Snubber (snubber)** parallel zum Lüfter zu installieren. Oder einen Ferritfilter zu verwenden
 
+### Stromkompensierte Drossel
+
+!!! danger "Netzspannung"
+    Die Drossel wird in den 110–230-V-Kreis eingebunden. Führen Sie die Montage nur bei vom Netz getrenntem Gerät durch.
+
+Eine stromkompensierte Drossel (Common Mode Choke) ist eine der wirksamsten erprobten Methoden, Störungen aus dem Netzteil des Lüfters zu unterdrücken. Sie unterdrückt Gleichtaktstörungen auf den Leitungen L und N und beeinflusst die Versorgung des Lüfters nicht.
+
+![Stromkompensierte Drossel](../../img/common_mode_choke.jpg)
+
+Schalten Sie die Drossel in die Versorgungsleitungen des Lüfters:
+
+![Schaltplan](../../img/common_mode_choke_schematic.png)
+
+1. Führen Sie die Leitung L durch die Wicklung 1–4 und die Leitung N durch die Wicklung 2–3.
+2. Schließen Sie die Pins 1 und 2 (mit Punkt markiert) an die Klemme FAN der iHeater-Platine an, die Pins 4 und 3 an den Lüfter.
+
+Im Schaltplan ist die Drossel `PDUUAT98-103MLN` dargestellt.
+
 ---
 
 ## 4. USB-3.0-Port - Probleme im Betrieb
